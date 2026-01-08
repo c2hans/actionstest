@@ -1,8 +1,10 @@
 name: Summarize new issues
 
 on:
-  issues:
-    types: [opened]
+  pull_request:
+    types: [closed]
+  #issues:
+    #types: [opened]
 
 jobs:
   summary:
