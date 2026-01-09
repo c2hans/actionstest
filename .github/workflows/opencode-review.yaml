@@ -26,6 +26,14 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Fetch PR diff
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Pre-fetch the full PR diff
+          gh pr diff ${{ github.event.pull_request.number }} > /tmp/pr-diff.patch
+          echo "PR diff: $(wc -l < /tmp/pr-diff.patch) lines"
+
       - name: Install OpenCode
         run: curl -fsSL https://opencode.ai/install | bash
       #...
